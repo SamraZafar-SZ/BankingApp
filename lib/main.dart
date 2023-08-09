@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/widgets/home.dart';
+import 'package:flutter_application_4/widgets/screens/LoginSignup.dart';
 
 void main() {
   runApp(const MainApp());
@@ -21,7 +22,7 @@ class _MainAppState extends State<MainApp> {
         scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: const SignAndLogin(),
     );
   }
 }
