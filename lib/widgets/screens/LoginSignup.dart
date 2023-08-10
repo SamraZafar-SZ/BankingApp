@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,6 +41,20 @@ class _SignAndLoginState extends State<SignAndLogin> {
         )
         .onError(
           (error, stackTrace) => print('Error ${error.toString()}'),
+        );
+  }
+
+  Future<void> Signinuser() async {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+          email: _controller.text,
+          password: _passwordcontroller.text,
+        )
+        .then(
+          (value) => widget.switchscreen(),
+        )
+        .onError(
+          (error, stackTrace) => print('${error.toString()}'),
         );
   }
 
@@ -129,7 +143,7 @@ class _SignAndLoginState extends State<SignAndLogin> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      AddUser();
+                      flag == true ? AddUser() : Signinuser();
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
