@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignAndLogin extends StatefulWidget {
-  const SignAndLogin({super.key});
-
+  const SignAndLogin(this.switchscreen, {super.key});
+  final void Function() switchscreen;
   @override
   State<SignAndLogin> createState() => _SignAndLoginState();
 }
@@ -62,7 +62,9 @@ class _SignAndLoginState extends State<SignAndLogin> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  widget.switchscreen();
+                },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
