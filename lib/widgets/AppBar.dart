@@ -35,9 +35,47 @@ class _AppbarState extends State<Appbar> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      title: const Text('Log Out Confirmation'),
+                      content: const Text('Are you Sure'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, 'Cancel');
+                          },
+                          child: const Text(
+                            "Cancel",
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, 'Logout');
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            'Log Out',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
                 },
-                icon: SvgPicture.asset('assets/more-icon.svg'),
+                icon: Image.asset(
+                  'assets/power.png',
+                  width: 30,
+                  height: 30,
+                ),
               ),
             ],
           )
