@@ -1,3 +1,7 @@
+// ignore_for_file: file_names
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class SignAndLogin extends StatefulWidget {
@@ -8,6 +12,17 @@ class SignAndLogin extends StatefulWidget {
 }
 
 class _SignAndLoginState extends State<SignAndLogin> {
+  final _controller = TextEditingController();
+  final _passwordcontroller = TextEditingController();
+  final _confirmpassword = TextEditingController();
+  @override
+  void dispose() {
+    _passwordcontroller.dispose();
+    _confirmpassword.dispose();
+    _controller.dispose();
+    super.dispose();
+  }
+
   bool flag = false;
   void signuppage() {
     setState(() {
@@ -15,6 +30,21 @@ class _SignAndLoginState extends State<SignAndLogin> {
     });
   }
 
+  Future<void> AddUser() async {
+    FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+          email: _controller.text,
+          password: _passwordcontroller.text,
+        )
+        .then(
+          (value) => widget.switchscreen(),
+        )
+        .onError(
+          (error, stackTrace) => print('Error ${error.toString()}'),
+        );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -25,13 +55,14 @@ class _SignAndLoginState extends State<SignAndLogin> {
             children: [
               Image.asset(
                 'assets/payment.png',
-                height: 100,
+                height: 200,
               ),
               const SizedBox(
                 height: 20,
               ),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _controller,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   label: Text(
@@ -47,8 +78,9 @@ class _SignAndLoginState extends State<SignAndLogin> {
               const SizedBox(
                 height: 20,
               ),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _passwordcontroller,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
@@ -68,8 +100,9 @@ class _SignAndLoginState extends State<SignAndLogin> {
                 height: 20,
               ),
               flag == true
-                  ? const TextField(
-                      decoration: InputDecoration(
+                  ? TextField(
+                      controller: _confirmpassword,
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
@@ -96,7 +129,7 @@ class _SignAndLoginState extends State<SignAndLogin> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      widget.switchscreen();
+                      AddUser();
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
