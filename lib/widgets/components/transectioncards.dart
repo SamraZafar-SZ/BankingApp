@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/widgets/screens/transectionpage.dart';
-
-import '../utilities/themeStyle.dart';
+import '../../utilities/themeStyle.dart';
 
 class TransactionCard extends StatefulWidget {
   final String title;

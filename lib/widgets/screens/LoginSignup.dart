@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/widgets/components/CustomTextField.dart';
 import 'package:flutter_application_4/widgets/components/CustomeElevatedButton.dart';
-import 'package:flutter_application_4/widgets/home.dart';
+import '../components/home.dart';
 
 class SignAndLogin extends StatefulWidget {
   const SignAndLogin({super.key});

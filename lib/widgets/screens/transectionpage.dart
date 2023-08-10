@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utilities/themeColors.dart';
 import '../../utilities/themeStyle.dart';
-import '../addnote.dart';
-import '../cardinpage.dart';
-import '../otherdetails.dart';
+import '../components/addnote.dart';
+import '../components/cardinpage.dart';
+import '../components/otherdetails.dart';
 
 class TransactionPage extends StatefulWidget {
   final String title;

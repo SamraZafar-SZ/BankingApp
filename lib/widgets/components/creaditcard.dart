@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../utilities/themeStyle.dart';
+import '../../utilities/themeStyle.dart';
 
 class Creaditcard extends StatefulWidget {
   const Creaditcard({super.key});

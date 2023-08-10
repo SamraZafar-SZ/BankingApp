@@ -1,10 +1,8 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-
-import '../AppBar.dart';
-import '../CardsList.dart';
-import '../RecentTransections.dart';
+import '../components/AppBar.dart';
+import '../components/CardsList.dart';
+import '../components/RecentTransections.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -1,8 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, library_private_types_in_public_api, sized_box_for_whitespace, prefer_const_constructors
-
 import 'package:flutter/material.dart';
-
-import '../utilities/themeStyle.dart';
+import '../../utilities/themeStyle.dart';
 
 class CardInPage extends StatefulWidget {
   final String title;

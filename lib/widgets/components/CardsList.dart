@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/utilities/themeColors.dart';
-import 'package:flutter_application_4/widgets/creaditcard.dart';
+import 'creaditcard.dart';
 
 class CardsList extends StatefulWidget {
   const CardsList({super.key});
