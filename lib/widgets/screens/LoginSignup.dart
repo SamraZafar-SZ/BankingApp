@@ -8,7 +8,13 @@ class SignAndLogin extends StatefulWidget {
 }
 
 class _SignAndLoginState extends State<SignAndLogin> {
-  @override
+  bool flag = false;
+  void signuppage() {
+    setState(() {
+      flag == false ? flag = true : flag = false;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -61,26 +67,80 @@ class _SignAndLoginState extends State<SignAndLogin> {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  widget.switchscreen();
-                },
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              flag == true
+                  ? const TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                        label: Text(
+                          'Confirm Password',
+                          style: TextStyle(
+                            inherit: true,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      obscureText: true,
+                    )
+                  : Container(),
+              flag == true
+                  ? const SizedBox(
+                      height: 20,
+                    )
+                  : Container(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      widget.switchscreen();
+                    },
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Colors.black,
+                      ),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(
+                          horizontal: 50,
+                        ),
+                      ),
                     ),
+                    child: flag == true
+                        ? const Text('Sign Up')
+                        : const Text('Sign In'),
                   ),
-                  backgroundColor: MaterialStateProperty.all(
-                    Colors.black,
-                  ),
-                  padding: MaterialStateProperty.all(
-                    const EdgeInsets.symmetric(
-                      horizontal: 50,
+                  ElevatedButton(
+                    onPressed: () {
+                      signuppage();
+                    },
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        Colors.black,
+                      ),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(
+                          horizontal: 50,
+                        ),
+                      ),
                     ),
+                    child: flag == false
+                        ? const Text('Join With Us')
+                        : const Text('Log In'),
                   ),
-                ),
-                child: const Text('Sign In'),
+                ],
               )
             ],
           ),
