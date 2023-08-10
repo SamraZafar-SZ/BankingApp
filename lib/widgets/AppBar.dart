@@ -34,7 +34,9 @@ class _AppbarState extends State<Appbar> {
                 icon: SvgPicture.asset('assets/search-icon.svg'),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: SvgPicture.asset('assets/more-icon.svg'),
               ),
             ],

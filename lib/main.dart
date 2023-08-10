@@ -20,20 +20,6 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  Widget? activescreen;
-
-  @override
-  void initState() {
-    activescreen = SignAndLogin(switchscreen);
-    super.initState();
-  }
-
-  void switchscreen() {
-    setState(() {
-      activescreen = const Home();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,7 +28,7 @@ class _MainAppState extends State<MainApp> {
         scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: activescreen,
+      home: const SignAndLogin(),
     );
   }
 }

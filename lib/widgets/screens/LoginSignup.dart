@@ -1,12 +1,14 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/widgets/home.dart';
 
 class SignAndLogin extends StatefulWidget {
-  const SignAndLogin(this.switchscreen, {super.key});
-  final void Function() switchscreen;
+  const SignAndLogin({super.key});
   @override
   State<SignAndLogin> createState() => _SignAndLoginState();
 }
@@ -37,7 +39,12 @@ class _SignAndLoginState extends State<SignAndLogin> {
           password: _passwordcontroller.text,
         )
         .then(
-          (value) => widget.switchscreen(),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Home(),
+            ),
+          ) as FutureOr Function(UserCredential value),
         )
         .onError(
           (error, stackTrace) => print('Error ${error.toString()}'),
@@ -45,13 +52,18 @@ class _SignAndLoginState extends State<SignAndLogin> {
   }
 
   Future<void> Signinuser() async {
-    FirebaseAuth.instance
+    await FirebaseAuth.instance
         .signInWithEmailAndPassword(
           email: _controller.text,
           password: _passwordcontroller.text,
         )
         .then(
-          (value) => widget.switchscreen(),
+          (value) => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Home(),
+            ),
+          ),
         )
         .onError(
           (error, stackTrace) => print('${error.toString()}'),
