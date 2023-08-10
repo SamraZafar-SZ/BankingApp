@@ -1,10 +1,9 @@
 // ignore_for_file: file_names, non_constant_identifier_names
-
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/widgets/components/CustomTextField.dart';
+import 'package:flutter_application_4/widgets/components/CustomeElevatedButton.dart';
 import 'package:flutter_application_4/widgets/home.dart';
 
 class SignAndLogin extends StatefulWidget {
@@ -86,63 +85,30 @@ class _SignAndLoginState extends State<SignAndLogin> {
               const SizedBox(
                 height: 20,
               ),
-              TextField(
+              CustomTextField(
                 controller: _controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  label: Text(
-                    'Email',
-                    style: TextStyle(
-                      inherit: true,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                keyboardType: TextInputType.emailAddress,
+                string: 'Email',
+                keyboardtype: TextInputType.emailAddress,
+                obse: false,
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextField(
+              CustomTextField(
                 controller: _passwordcontroller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  label: Text(
-                    'Password',
-                    style: TextStyle(
-                      inherit: true,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                obscureText: true,
+                string: 'Password',
+                keyboardtype: TextInputType.text,
+                obse: true,
               ),
               const SizedBox(
                 height: 20,
               ),
               flag == true
-                  ? TextField(
+                  ? CustomTextField(
                       controller: _confirmpassword,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                        ),
-                        label: Text(
-                          'Confirm Password',
-                          style: TextStyle(
-                            inherit: true,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      obscureText: true,
+                      string: 'Confirm Password',
+                      keyboardtype: TextInputType.text,
+                      obse: true,
                     )
                   : Container(),
               flag == true
@@ -153,52 +119,17 @@ class _SignAndLoginState extends State<SignAndLogin> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      flag == true ? AddUser() : Signinuser();
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      backgroundColor: MaterialStateProperty.all(
-                        Colors.black,
-                      ),
-                      padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(
-                          horizontal: 50,
-                        ),
-                      ),
-                    ),
-                    child: flag == true
-                        ? const Text('Sign Up')
-                        : const Text('Sign In'),
+                  CustomeElevated(
+                    flag: flag,
+                    AddUser: AddUser,
+                    Signinuser: Signinuser,
+                    txt1: 'Sign Up',
+                    txt2: 'Log In',
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      signuppage();
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      backgroundColor: MaterialStateProperty.all(
-                        Colors.black,
-                      ),
-                      padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(
-                          horizontal: 50,
-                        ),
-                      ),
-                    ),
-                    child: flag == false
-                        ? const Text('Join With Us')
-                        : const Text('Log In'),
-                  ),
+                  ElevatedButton_(
+                    signuppage: signuppage,
+                    flag: flag,
+                  )
                 ],
               )
             ],
