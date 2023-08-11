@@ -73,8 +73,8 @@ class _AppbarState extends State<Appbar> {
                 },
                 icon: Image.asset(
                   'assets/power.png',
-                  width: 30,
-                  height: 30,
+                  width: 27,
+                  height: 27,
                 ),
               ),
             ],

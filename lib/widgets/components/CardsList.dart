@@ -1,6 +1,10 @@
+// ignore_for_file: non_constant_identifier_names, no_leading_underscores_for_local_identifiers, unused_local_variable, avoid_print
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/utilities/themeColors.dart';
 import 'creaditcard.dart';
+import 'package:http/http.dart' as http;
 
 class CardsList extends StatefulWidget {
   const CardsList({super.key});
@@ -10,6 +14,16 @@ class CardsList extends StatefulWidget {
 }
 
 class _CardsListState extends State<CardsList> {
+  void Addcards() async {
+    final ref = FirebaseDatabase.instance.ref();
+    final shot = await ref.child('Cards').get();
+    if (shot.exists) {
+      print(shot.value);
+    } else {
+      print('Error');
+    }
+  }
+
   List cardList = [
     Creaditcard(),
     Creaditcard(),
@@ -27,6 +41,7 @@ class _CardsListState extends State<CardsList> {
   }
 
   oonpagechage(int index) {
+    Addcards();
     setState(() {
       cardnumber = index;
     });
