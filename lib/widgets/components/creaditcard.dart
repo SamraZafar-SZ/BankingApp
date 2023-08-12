@@ -1,18 +1,20 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utilities/themeStyle.dart';
 
 class Creaditcard extends StatefulWidget {
-  const Creaditcard({super.key});
+  const Creaditcard({super.key, required this.name, required this.CardNumber});
+  final String name;
+  final String CardNumber;
 
   @override
   State<Creaditcard> createState() => _CreaditcardState();
 }
 
 class _CreaditcardState extends State<Creaditcard> {
-  @override
   bool flag = false;
-
   @override
   Widget build(BuildContext context) {
     return Padding(

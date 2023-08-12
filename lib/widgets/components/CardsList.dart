@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, no_leading_underscores_for_local_identifiers, unused_local_variable, avoid_print, file_names
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/utilities/themeColors.dart';
 import 'creaditcard.dart';
@@ -12,24 +13,35 @@ class CardsList extends StatefulWidget {
 }
 
 class _CardsListState extends State<CardsList> {
-  void Addcards() async {
-    final ref = FirebaseDatabase.instance.ref();
-    final shot = await ref.child('Cards').get();
-    if (shot.exists) {
-      print(shot.value);
-    } else {
-      print('Error');
-    }
+  List cardList = [];
+  @override
+  void initState() {
+    getcards();
+    super.initState();
   }
 
-  List cardList = [
-    const Creaditcard(),
-    const Creaditcard(),
-    const Creaditcard(),
-    const Creaditcard(),
-    const Creaditcard(),
-    const Creaditcard(),
-  ];
+  void getcards() async {
+    final db = FirebaseFirestore.instance;
+    String cardnum, username;
+    await db
+        .collection("Cards")
+        .where("uid", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+        .get()
+        .then((value) => {
+              for (var i in value.docs)
+                {
+                  cardnum = i.data().values.elementAt(0),
+                  username = i.data().values.elementAt(2),
+                  setState(() {
+                    cardList.add(
+                      Creaditcard(name: username, CardNumber: cardnum),
+                    );
+                  }),
+                }
+            })
+        .onError((error, stackTrace) => {});
+  }
+
   int cardnumber = 0;
   final PageController _pageController = PageController(initialPage: 0);
   @override
@@ -39,7 +51,6 @@ class _CardsListState extends State<CardsList> {
   }
 
   oonpagechage(int index) {
-    Addcards();
     setState(() {
       cardnumber = index;
     });
@@ -69,7 +80,7 @@ class _CardsListState extends State<CardsList> {
             scrollDirection: Axis.horizontal,
             controller: _pageController,
             onPageChanged: oonpagechage,
-            itemBuilder: (context, index) => const Creaditcard(),
+            itemBuilder: (context, index) => cardList[index],
           ),
         ),
         Padding(
