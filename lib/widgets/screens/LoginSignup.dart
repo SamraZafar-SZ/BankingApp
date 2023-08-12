@@ -46,10 +46,11 @@ class _SignAndLoginState extends State<SignAndLogin> {
           ) as FutureOr Function(UserCredential value),
         )
         .onError(
-          (error, stackTrace) => print('Error ${error.toString()}'),
+          (error, stackTrace) => print(
+            'Error ${error.toString()}',
+          ),
         );
   }
-
   Future<void> Signinuser() async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
@@ -65,7 +66,7 @@ class _SignAndLoginState extends State<SignAndLogin> {
           ),
         )
         .onError(
-          (error, stackTrace) => print('${error.toString()}'),
+          (error, stackTrace) => print(error.toString()),
         );
   }
 

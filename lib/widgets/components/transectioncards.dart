@@ -42,7 +42,7 @@ class _TransactionCardState extends State<TransactionCard> {
             ),
           );
         },
-        child: Container(
+        child: SizedBox(
           height: 62.0,
           width: 343.0,
           child: Column(

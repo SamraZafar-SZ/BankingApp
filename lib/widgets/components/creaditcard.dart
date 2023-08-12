@@ -11,6 +11,9 @@ class Creaditcard extends StatefulWidget {
 
 class _CreaditcardState extends State<Creaditcard> {
   @override
+  bool flag = false;
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -32,11 +35,21 @@ class _CreaditcardState extends State<Creaditcard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '23142442',
-                      style: ThemeStyles.cardMoney,
+                    Visibility(
+                      visible: flag,
+                      child: Text(
+                        '23142442',
+                        style: ThemeStyles.cardMoney,
+                      ),
                     ),
-                    SvgPicture.asset('assets/hide-icon.svg')
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          flag == true ? flag = false : flag = true;
+                        });
+                      },
+                      icon: SvgPicture.asset('assets/hide-icon.svg'),
+                    ),
                   ],
                 ),
               ),
