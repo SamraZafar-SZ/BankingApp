@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'themeColors.dart';
 
 class ThemeStyles {
@@ -13,10 +14,10 @@ class ThemeStyles {
     fontSize: 17.0,
     color: ThemeColors.black,
   );
-  static TextStyle cardDetails = const TextStyle(
-    fontSize: 17.0,
-    color: Color(0xff66646d),
-    fontWeight: FontWeight.w600,
+  static TextStyle cardDetails = GoogleFonts.inconsolata(
+    color: Colors.white,
+    fontSize: 22,
+    fontWeight: FontWeight.w700,
   );
   static TextStyle cardMoney = const TextStyle(
     color: Colors.white,

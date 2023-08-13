@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/widgets/components/grid.dart';
 import '../components/AppBar.dart';
 import '../components/CardsList.dart';
-import '../components/RecentTransections.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Appbar(),
           CardsList(),
-          RecentTransactions(),
+          Grid(),
         ],
       ),
     );

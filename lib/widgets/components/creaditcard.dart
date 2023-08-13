@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/utilities/themeColors.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utilities/themeStyle.dart';
 
@@ -23,7 +24,7 @@ class _CreaditcardState extends State<Creaditcard> {
         height: 216,
         width: 380,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: ThemeColors.fluorescentCopper,
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Padding(
