@@ -1,6 +1,4 @@
 // ignore_for_file: non_constant_identifier_names
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utilities/themeStyle.dart';
@@ -39,7 +37,10 @@ class _CreaditcardState extends State<Creaditcard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(),
+                    SvgPicture.asset(
+                      'assets/mastercard.svg',
+                      height: 50,
+                    ),
                     IconButton(
                       onPressed: () {
                         setState(() {
