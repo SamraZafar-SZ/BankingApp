@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utilities/themeStyle.dart';
@@ -17,6 +18,7 @@ class _CreaditcardState extends State<Creaditcard> {
   bool flag = false;
   @override
   Widget build(BuildContext context) {
+    List<String> card = widget.CardNumber.split("-");
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -37,13 +39,7 @@ class _CreaditcardState extends State<Creaditcard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Visibility(
-                      visible: flag,
-                      child: Text(
-                        '23142442',
-                        style: ThemeStyles.cardMoney,
-                      ),
-                    ),
+                    const SizedBox(),
                     IconButton(
                       onPressed: () {
                         setState(() {
@@ -60,31 +56,46 @@ class _CreaditcardState extends State<Creaditcard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Ali Hassan',
-                      style: ThemeStyles.cardDetails,
+                    Visibility(
+                      visible: flag,
+                      child: Text(
+                        widget.name,
+                        style: ThemeStyles.cardDetails,
+                      ),
                     ),
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(right: 6.0),
-                          child: Text(
-                            '4709',
-                            style: ThemeStyles.cardDetails,
-                          ),
+                            padding: const EdgeInsets.only(right: 6.0),
+                            child: Visibility(
+                              visible: true,
+                              child: Text(
+                                card[0],
+                                style: ThemeStyles.cardDetails,
+                              ),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                          child: flag == false
+                              ? SvgPicture.asset('assets/card-dots.svg')
+                              : Text(
+                                  card[1],
+                                  style: ThemeStyles.cardDetails,
+                                ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: SvgPicture.asset('assets/card-dots.svg'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: SvgPicture.asset('assets/card-dots.svg'),
+                          child: flag == false
+                              ? SvgPicture.asset('assets/card-dots.svg')
+                              : Text(
+                                  card[2],
+                                  style: ThemeStyles.cardDetails,
+                                ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 6.0),
                           child: Text(
-                            '4709',
+                            card[3],
                             style: ThemeStyles.cardDetails,
                           ),
                         ),
